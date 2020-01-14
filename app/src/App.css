@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ddd;
+    font-family: 'Libre Baskerville', serif;
+}

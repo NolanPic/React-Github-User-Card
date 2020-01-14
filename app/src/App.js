@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Profile from './components/Profile';
 import Followers from './components/Followers';
+import styled from 'styled-components';
+
+const Main = styled.main`
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+`;
 
 class App extends Component {
 
@@ -35,11 +42,11 @@ class App extends Component {
     const { profile, followers } = this.state;
 
     return (
-      <div className="App">
+      <Main>
         <Profile profile={profile} />
         <h3>Followers</h3>
         <Followers followers={followers} />
-      </div>
+      </Main>
     );
   }
 }
