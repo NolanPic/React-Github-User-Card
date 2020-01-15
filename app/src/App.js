@@ -3,6 +3,7 @@ import axios from 'axios';
 import Profile from './components/Profile';
 import Followers from './components/Followers';
 import styled from 'styled-components';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const Main = styled.main`
   width: 80%;
@@ -42,11 +43,13 @@ class App extends Component {
     const { profile, followers } = this.state;
 
     return (
-      <Main>
-        <Profile profile={profile} />
-        <h3>Followers</h3>
-        <Followers followers={followers} />
-      </Main>
+      <Router>
+        <Main>
+          <Profile profile={profile} />
+          <h3>Followers</h3>
+          <Followers followers={followers} />
+        </Main>
+      </Router>
     );
   }
 }

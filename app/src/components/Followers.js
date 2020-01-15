@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const FollowerList = styled.div`
     display: flex;
@@ -13,14 +14,13 @@ const FollowerList = styled.div`
 `;
 
 const Followers = ({ followers }) => {
-    console.log('followers', followers);
     return (
         <FollowerList>
             {followers.map(follower => (
                 <Card key={follower.login}>
-                    <img src={follower.avatar_url} alt={`${follower.name}'s avatar`} />
-                    <h3>{follower.name}</h3>
-                    <h5>{follower.bio}</h5>
+                    <Link to={`/${follower.login}`}>
+                        <img src={follower.avatar_url} alt={`${follower.name}'s avatar`} />
+                    </Link>
                 </Card>
             ))}
         </FollowerList>
