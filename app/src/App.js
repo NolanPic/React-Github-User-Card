@@ -3,7 +3,7 @@ import axios from 'axios';
 import Profile from './components/Profile';
 import Followers from './components/Followers';
 import styled from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 
 const Main = styled.main`
   width: 80%;
@@ -19,7 +19,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://api.github.com/users/NolanPic')
+    console.log('props', this.props);
+    this.fetchData('NolanPic');
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.location.pathname !== this.props.location.pathname) {
+      const username = this.props.location.pathname.substring(1);
+      this.fetchData(username);
+    }
+  }
+
+  fetchData = username => {
+    axios.get(`https://api.github.com/users/${username}`)
       .then(res => {
 
         // set profile
@@ -43,15 +55,15 @@ class App extends Component {
     const { profile, followers } = this.state;
 
     return (
-      <Router>
+      <Route exact path={['/', '/:username']}>
         <Main>
           <Profile profile={profile} />
           <h3>Followers</h3>
           <Followers followers={followers} />
         </Main>
-      </Router>
+      </Route>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
